@@ -1,0 +1,17 @@
+{
+  "name": "sequelize_crud",
+  "version": "1.0.0",
+  "description": "this is a crud backend built with node, express, mysql, sequelizeORM",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "devStart": "nodemon server.js"
+  },
+  "author": "usman5445",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.3.0",
+    "sequelize": "^6.31.1"
+  }
+}
