@@ -1,4 +1,4 @@
-const { UsersModel } = require("../Utils/db.config");
+const { UsersModel, OrdersModel } = require("../Utils/db.config");
 
 function newUser(req, res) {
   const bData = { name: req.body.name, email: req.body.email };
@@ -13,7 +13,7 @@ function newUser(req, res) {
 }
 
 function getUserById(req, res) {
-  UsersModel.findByPk(req.params.userId)
+  UsersModel.findByPk(req.params.userId, { include: { model: OrdersModel } })
     .then((user) => {
       if (user) {
         res.send({
@@ -32,7 +32,7 @@ function getUserById(req, res) {
 }
 
 function getAllUsers(req, res) {
-  UsersModel.findAll()
+  UsersModel.findAll({ include: { model: OrdersModel } })
     .then((users) => {
       res.send({ message: "all users fetched successfully", users });
     })
