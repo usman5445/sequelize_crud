@@ -66,6 +66,7 @@ function updateUser(req, res) {
 function deleteUser(req, res) {
   UsersModel.findOne({ where: { id: req.params.userId } }).then((user) => {
     if (user) {
+      OrdersModel.destroy({ where: { userId: req.params.userId } });
       user
         .destroy()
         .then((deletedUser) => {

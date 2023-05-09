@@ -3,15 +3,23 @@ module.exports = (Sequelize, sequelize) => {
     productName: {
       type: Sequelize.STRING,
       allowNull: false,
+      validate: {
+        notEmpty: { args: true, msg: "Product name cannot be empty" },
+      },
     },
     amount: {
       type: Sequelize.FLOAT,
       allowNull: false,
     },
     status: {
-      type: Sequelize.ENUM("PENDING", "COMPLETED", "CANCELLED"),
+      type: Sequelize.STRING,
       default: "PENDING",
-      allowNull: false,
+      validate: {
+        isIn: {
+          args: [["PENDING", "COMPLETED", "CANCELLED"]],
+          msg: "Status has to be either one of these PENDING, COMPLETED, CANCELLED",
+        },
+      },
     },
   });
 

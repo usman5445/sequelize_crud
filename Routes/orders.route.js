@@ -1,23 +1,21 @@
 const router = require("express").Router();
 
-router.get("/", (req, res) => {
-  res.send("all orders");
-});
+const {
+  getAllOrders,
+  getOrderById,
+  newOrder,
+  updateOrderById,
+  deleteOrder,
+} = require("../Controllers/orders.controller");
 
-router.get("/:orderId", (req, res) => {
-  res.send(`details of ${req.params.orderId}`);
-});
+router.get("/", getAllOrders);
 
-router.post("/", (req, res) => {
-  res.send("new order created");
-});
+router.get("/:orderId", getOrderById);
 
-router.put("/:orderId", (req, res) => {
-  res.send(`${req.params.orderId} updated`);
-});
+router.post("/", newOrder);
 
-router.delete("/:orderId", (req, res) => {
-  res.send(`${req.params.orderId} deleted`);
-});
+router.put("/:orderId", updateOrderById);
+
+router.delete("/:orderId", deleteOrder);
 
 module.exports = router;

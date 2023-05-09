@@ -4,7 +4,7 @@ module.exports = (Sequelize, sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
       validate: {
-        notEmpty: true,
+        notEmpty: { args: true, msg: "Users name cannot be empty" },
       },
     },
     email: {
@@ -12,8 +12,7 @@ module.exports = (Sequelize, sequelize) => {
       allowNull: false,
       unique: true,
       validate: {
-        notEmpty: true,
-        isEmail: true,
+        isEmail: { args: true, msg: "Please Enter a valid email address" },
       },
     },
   });
